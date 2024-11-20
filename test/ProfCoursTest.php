@@ -100,6 +100,10 @@ class ProfCoursTest extends TestCase
             *
             */
 
+            new Cours("IoT", "10", 1),
+            new Cours("IA","12", 3),
+            new Cours("EDL", "5", 6)
+
         ];
         
     }
@@ -186,6 +190,12 @@ class ProfCoursTest extends TestCase
         * Question 8 : Dans la fonction « testAdd() », s’inspirer de test d’ajout des profs pour tester l’ajout des cours.   
         *
         */
+
+        $expected = count(self::$cours_a);
+        $num_records = Cours::count($conn);
+        $this->assertEquals($expected, $num_records, "Enregistrement des cours ...\n");
+        $this->assertCount($num_records, self::$cours_a, "Enregistrement des cours ...\n");
+
         
     }
     
@@ -219,6 +229,14 @@ class ProfCoursTest extends TestCase
         *
         */
   
+        $record_cours_a = Cours::printAll($conn);
+        print "########## - LISTE DES COURS - AVANT TOUT ########## \n";
+        foreach ( $record_cours_a as $record_cours ) {
+            print $record_cours;
+        }
+        print "################################################################\n\n";
+        $this->assertCount(count(Self::$cours_a), $record_cours_a, "Nombre d'enregistrement égale pour Cours\n");
+
         
     }
     
